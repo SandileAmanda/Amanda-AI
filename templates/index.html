@@ -501,7 +501,56 @@
 
         </section>
 
+<!-- MEETING NOTES SUMMARIZER -->
 
+<section class="email-generator">
+
+    <h2>📝 Meeting Notes Summarizer</h2>
+
+    <p>
+        Paste your meeting notes below and let AMANDA AI
+        organise the important information.
+    </p>
+
+    <label for="meetingNotes">
+        Meeting Notes
+    </label>
+
+    <textarea
+        id="meetingNotes"
+        placeholder="Paste your meeting notes here..."
+    ></textarea>
+
+    <button
+        class="generate-btn"
+        onclick="summarizeNotes()"
+    >
+        ✨ Summarize Notes
+    </button>
+
+    <div class="result-box">
+
+        <div class="result-header">
+
+            <h3>Summary</h3>
+
+            <button
+                class="copy-btn"
+                onclick="copySummary()"
+            >
+                📋 Copy
+            </button>
+
+        </div>
+
+        <textarea
+            id="meetingResult"
+            placeholder="Your meeting summary will appear here..."
+        ></textarea>
+
+    </div>
+
+</section>
         <!-- RESPONSIBLE AI -->
         <div class="disclaimer">
 
@@ -523,7 +572,50 @@
 
 <!-- JAVASCRIPT -->
 <script>
+function summarizeNotes() {
 
+    const notes =
+        document.getElementById("meetingNotes").value;
+
+    const result =
+        document.getElementById("meetingResult");
+
+    if (notes.trim() === "") {
+
+        result.value =
+            "Please paste your meeting notes first.";
+
+        return;
+    }
+
+    result.value =
+        "MEETING SUMMARY\n\n" +
+        "Key Points:\n" +
+        "- " + notes.substring(0, 300) +
+        "\n\nAction Items:\n" +
+        "- Review the points discussed.\n" +
+        "- Follow up on outstanding tasks.\n\n" +
+        "Note: This is an AI-assisted summary. " +
+        "Please review the original meeting notes.";
+}
+
+
+function copySummary() {
+
+    const result =
+        document.getElementById("meetingResult");
+
+    if (result.value.trim() === "") {
+
+        alert("There is no summary to copy yet.");
+
+        return;
+    }
+
+    navigator.clipboard.writeText(result.value);
+
+    alert("Summary copied successfully! 📋");
+}
 function generateEmail() {
 
     const message =
