@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AMANDA AI</title>
+    <title>AMANDA AI | CAPACITI Project</title>
 
     <style>
         * {
@@ -30,6 +30,7 @@
             background: white;
             padding: 25px 15px;
             border-right: 1px solid #f0dce7;
+            flex-shrink: 0;
         }
 
         .logo {
@@ -51,6 +52,7 @@
             text-align: left;
             cursor: pointer;
             font-size: 14px;
+            color: #333;
         }
 
         .nav-item:hover,
@@ -59,10 +61,11 @@
             color: #a52f6d;
         }
 
-        /* MAIN CONTENT */
+        /* MAIN */
         .main {
             flex: 1;
             padding: 30px;
+            max-width: 1400px;
         }
 
         .top {
@@ -80,6 +83,7 @@
             background: white;
             padding: 10px 15px;
             border-radius: 20px;
+            border: 1px solid #f0dce7;
         }
 
         /* WELCOME */
@@ -96,9 +100,10 @@
 
         .welcome p {
             color: #666;
+            line-height: 1.6;
         }
 
-        /* FEATURE CARDS */
+        /* DASHBOARD CARDS */
         .cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -111,6 +116,12 @@
             padding: 25px;
             border-radius: 18px;
             border: 1px solid #f0dce7;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
         }
 
         .icon {
@@ -128,8 +139,8 @@
             line-height: 1.5;
         }
 
-        /* EMAIL GENERATOR */
-        .email-generator {
+        /* TOOLS */
+        .tool {
             background: white;
             padding: 25px;
             border-radius: 18px;
@@ -137,13 +148,14 @@
             margin-bottom: 25px;
         }
 
-        .email-generator h2 {
+        .tool h2 {
             margin-bottom: 8px;
         }
 
-        .email-generator > p {
+        .tool > p {
             color: #777;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         label {
@@ -205,7 +217,11 @@
             background: #f9ddeb;
         }
 
-        /* DISCLAIMER */
+        .hidden {
+            display: none;
+        }
+
+        /* RESPONSIBLE AI */
         .disclaimer {
             padding: 15px;
             background: white;
@@ -214,9 +230,10 @@
             color: #777;
             border: 1px solid #eee;
             margin-top: 20px;
+            line-height: 1.5;
         }
 
-        /* MOBILE RESPONSIVE */
+        /* MOBILE */
         @media (max-width: 700px) {
 
             .app {
@@ -227,12 +244,19 @@
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid #f0dce7;
+                padding: 15px;
+            }
+
+            .logo {
+                margin-bottom: 15px;
             }
 
             .nav-item {
                 display: inline-block;
                 width: auto;
-                padding: 9px;
+                padding: 9px 10px;
+                margin-right: 3px;
+                font-size: 12px;
             }
 
             .main {
@@ -245,6 +269,10 @@
 
             .top h1 {
                 font-size: 22px;
+            }
+
+            .profile {
+                font-size: 12px;
             }
         }
     </style>
@@ -261,165 +289,140 @@
             ✨ AMANDA AI
         </div>
 
-        <button class="nav-item active">
+        <button class="nav-item active" onclick="showSection('dashboard', this)">
             🏠 Dashboard
         </button>
 
-        <button class="nav-item">
-            ✉️ Email Generator
+        <button class="nav-item" onclick="showSection('email', this)">
+            ✉️ Email
         </button>
 
-        <button class="nav-item">
+        <button class="nav-item" onclick="showSection('meeting', this)">
             📝 Meeting Notes
         </button>
 
-        <button class="nav-item">
-            ✅ Task Planner
+        <button class="nav-item" onclick="showSection('tasks', this)">
+            ✅ Tasks
         </button>
 
-        <button class="nav-item">
-            🔎 Research Assistant
+        <button class="nav-item" onclick="showSection('research', this)">
+            🔎 Research
         </button>
 
-        <button class="nav-item">
-            💬 AI Chatbot
-        </button>
-
-        <button class="nav-item">
-            ⚙️ Settings
+        <button class="nav-item" onclick="showSection('chat', this)">
+            💬 Chatbot
         </button>
 
     </aside>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main class="main">
 
         <div class="top">
-
-            <h1>
-                Dashboard
-            </h1>
+            <h1 id="pageTitle">Dashboard</h1>
 
             <div class="profile">
                 👩‍💻 Amanda
             </div>
-
         </div>
 
 
-        <!-- WELCOME -->
-        <section class="welcome">
+        <!-- DASHBOARD -->
+        <section id="dashboard">
 
-            <h2>
-                Welcome to AMANDA AI 🌸
-            </h2>
+            <div class="welcome">
 
-            <p>
-                Your intelligent digital assistant for smarter,
-                simpler productivity.
-            </p>
-
-        </section>
-
-
-        <!-- AI FEATURES -->
-        <section class="cards">
-
-            <div class="card">
-
-                <div class="icon">
-                    ✉️
-                </div>
-
-                <h3>
-                    Smart Email Generator
-                </h3>
+                <h2>
+                    Welcome to AMANDA AI 🌸
+                </h2>
 
                 <p>
-                    Create professional emails quickly
-                    with AI assistance.
+                    Your intelligent digital assistant for smarter,
+                    simpler productivity.
                 </p>
 
             </div>
 
 
-            <div class="card">
+            <div class="cards">
 
-                <div class="icon">
-                    📝
+                <div class="card" onclick="openTool('email')">
+                    <div class="icon">✉️</div>
+
+                    <h3>
+                        Smart Email Generator
+                    </h3>
+
+                    <p>
+                        Create professional emails quickly
+                        with AI assistance.
+                    </p>
                 </div>
 
-                <h3>
-                    Meeting Notes Summarizer
-                </h3>
 
-                <p>
-                    Turn meeting notes into clear summaries
-                    and action items.
-                </p>
+                <div class="card" onclick="openTool('meeting')">
+                    <div class="icon">📝</div>
 
-            </div>
+                    <h3>
+                        Meeting Notes Summarizer
+                    </h3>
 
-
-            <div class="card">
-
-                <div class="icon">
-                    ✅
+                    <p>
+                        Turn meeting notes into clear summaries
+                        and action items.
+                    </p>
                 </div>
 
-                <h3>
-                    AI Task Planner
-                </h3>
 
-                <p>
-                    Organise your goals and tasks into
-                    a practical plan.
-                </p>
+                <div class="card" onclick="openTool('tasks')">
+                    <div class="icon">✅</div>
 
-            </div>
+                    <h3>
+                        AI Task Planner
+                    </h3>
 
-
-            <div class="card">
-
-                <div class="icon">
-                    🔎
+                    <p>
+                        Organise your goals and tasks into
+                        a practical plan.
+                    </p>
                 </div>
 
-                <h3>
-                    AI Research Assistant
-                </h3>
 
-                <p>
-                    Structure research questions and
-                    organise information.
-                </p>
+                <div class="card" onclick="openTool('research')">
+                    <div class="icon">🔎</div>
 
-            </div>
+                    <h3>
+                        AI Research Assistant
+                    </h3>
 
-
-            <div class="card">
-
-                <div class="icon">
-                    💬
+                    <p>
+                        Structure research questions and
+                        organise information.
+                    </p>
                 </div>
 
-                <h3>
-                    AI Chatbot
-                </h3>
 
-                <p>
-                    Chat with AMANDA AI and get
-                    helpful digital assistance.
-                </p>
+                <div class="card" onclick="openTool('chat')">
+                    <div class="icon">💬</div>
+
+                    <h3>
+                        AI Chatbot
+                    </h3>
+
+                    <p>
+                        Chat with AMANDA AI and get
+                        helpful digital assistance.
+                    </p>
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- SMART EMAIL GENERATOR -->
-        <section class="email-generator">
+        <!-- EMAIL -->
+        <section id="email" class="tool hidden">
 
             <h2>
                 ✉️ Smart Email Generator
@@ -429,8 +432,7 @@
                 Tell AMANDA AI what you want your email to say.
             </p>
 
-
-            <label for="emailRequest">
+            <label>
                 What would you like to say?
             </label>
 
@@ -439,41 +441,21 @@
                 placeholder="Example: I want to request a meeting with my manager..."
             ></textarea>
 
-
-            <label for="emailTone">
+            <label>
                 Choose a tone
             </label>
 
             <select id="emailTone">
-
-                <option>
-                    Professional
-                </option>
-
-                <option>
-                    Friendly
-                </option>
-
-                <option>
-                    Formal
-                </option>
-
-                <option>
-                    Casual
-                </option>
-
+                <option>Professional</option>
+                <option>Friendly</option>
+                <option>Formal</option>
+                <option>Casual</option>
             </select>
 
-
-            <button
-                class="generate-btn"
-                onclick="generateEmail()"
-            >
+            <button class="generate-btn" onclick="generateEmail()">
                 ✨ Generate Email
             </button>
 
-
-            <!-- RESULT -->
             <div class="result-box">
 
                 <div class="result-header">
@@ -482,15 +464,11 @@
                         Generated Email
                     </h3>
 
-                    <button
-                        class="copy-btn"
-                        onclick="copyEmail()"
-                    >
+                    <button class="copy-btn" onclick="copyText('emailResult')">
                         📋 Copy
                     </button>
 
                 </div>
-
 
                 <textarea
                     id="emailResult"
@@ -501,275 +479,212 @@
 
         </section>
 
-<!-- MEETING NOTES SUMMARIZER -->
 
-<section class="email-generator">
+        <!-- MEETING NOTES -->
+        <section id="meeting" class="tool hidden">
 
-    <h2>📝 Meeting Notes Summarizer</h2>
+            <h2>
+                📝 Meeting Notes Summarizer
+            </h2>
 
-    <p>
-        Paste your meeting notes below and let AMANDA AI
-        organise the important information.
-    </p>
+            <p>
+                Paste your meeting notes and AMANDA AI will
+                organise the important information.
+            </p>
 
-    <label for="meetingNotes">
-        Meeting Notes
-    </label>
+            <label>
+                Meeting Notes
+            </label>
 
-    <textarea
-        id="meetingNotes"
-        placeholder="Paste your meeting notes here..."
-    ></textarea>
+            <textarea
+                id="meetingNotes"
+                placeholder="Paste your meeting notes here..."
+            ></textarea>
 
-    <button
-        class="generate-btn"
-        onclick="summarizeNotes()"
-    >
-        ✨ Summarize Notes
-    </button>
-
-    <div class="result-box">
-
-        <div class="result-header">
-
-            <h3>Summary</h3>
-
-            <button
-                class="copy-btn"
-                onclick="copySummary()"
-            >
-                📋 Copy
+            <button class="generate-btn" onclick="summarizeNotes()">
+                ✨ Summarize Notes
             </button>
 
-        </div>
+            <div class="result-box">
 
-        <textarea
-            id="meetingResult"
-            placeholder="Your meeting summary will appear here..."
-        ></textarea>
+                <div class="result-header">
 
-    </div>
+                    <h3>
+                        Summary
+                    </h3>
 
-</section>
-        <!-- AI TASK PLANNER -->
+                    <button class="copy-btn" onclick="copyText('meetingResult')">
+                        📋 Copy
+                    </button>
 
-<section class="email-generator">
+                </div>
 
-    <h2>✅ AI Task Planner</h2>
+                <textarea
+                    id="meetingResult"
+                    placeholder="Your meeting summary will appear here..."
+                ></textarea>
 
-    <p>
-        Enter your tasks or goal and let AMANDA AI
-        organise them into a simple plan.
-    </p>
+            </div>
 
-    <label for="taskInput">
-        Your Tasks or Goal
-    </label>
+        </section>
 
-    <textarea
-        id="taskInput"
-        placeholder="Example: Complete my assignment, study Python, apply for jobs..."
-    ></textarea>
 
-    <label for="taskPriority">
-        Priority
-    </label>
+        <!-- TASK PLANNER -->
+        <section id="tasks" class="tool hidden">
 
-    <select id="taskPriority">
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option>
-    </select>
+            <h2>
+                ✅ AI Task Planner
+            </h2>
 
-    <button
-        class="generate-btn"
-        onclick="createTaskPlan()"
-    >
-        ✨ Create Task Plan
-    </button>
+            <p>
+                Enter your tasks or goal and let AMANDA AI
+                organise them into a simple plan.
+            </p>
 
-    <div class="result-box">
+            <label>
+                Your Tasks or Goal
+            </label>
 
-        <div class="result-header">
+            <textarea
+                id="taskInput"
+                placeholder="Example: Complete my assignment, study Python, apply for jobs..."
+            ></textarea>
 
-            <h3>My Task Plan</h3>
+            <label>
+                Priority
+            </label>
 
-            <button
-                class="copy-btn"
-                onclick="copyTaskPlan()"
-            >
-                📋 Copy
+            <select id="taskPriority">
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+
+            <button class="generate-btn" onclick="createTaskPlan()">
+                ✨ Create Task Plan
             </button>
 
-        </div>
+            <div class="result-box">
 
-        <textarea
-            id="taskResult"
-            placeholder="Your task plan will appear here..."
-        ></textarea>
+                <div class="result-header">
 
-    </div>
+                    <h3>
+                        My Task Plan
+                    </h3>
 
-</section>
-        <!-- AI TASK PLANNER -->
+                    <button class="copy-btn" onclick="copyText('taskResult')">
+                        📋 Copy
+                    </button>
 
-<section class="email-generator">
+                </div>
 
-    <h2>✅ AI Task Planner</h2>
+                <textarea
+                    id="taskResult"
+                    placeholder="Your task plan will appear here..."
+                ></textarea>
 
-    <p>
-        Enter your tasks or goal and let AMANDA AI
-        organise them into a simple plan.
-    </p>
+            </div>
 
-    <label for="taskInput">
-        Your Tasks or Goal
-    </label>
+        </section>
 
-    <textarea
-        id="taskInput"
-        placeholder="Example: Complete my assignment, study Python, apply for jobs..."
-    ></textarea>
 
-    <label for="taskPriority">
-        Priority
-    </label>
+        <!-- RESEARCH -->
+        <section id="research" class="tool hidden">
 
-    <select id="taskPriority">
-        <option>High</option>
-        <option>Medium</option>
-        <option>Low</option>
-    </select>
+            <h2>
+                🔎 AI Research Assistant
+            </h2>
 
-    <button
-        class="generate-btn"
-        onclick="createTaskPlan()"
-    >
-        ✨ Create Task Plan
-    </button>
+            <p>
+                Enter a research topic or question and AMANDA AI
+                will help you organise your research.
+            </p>
 
-    <div class="result-box">
+            <label>
+                Research Topic or Question
+            </label>
 
-        <div class="result-header">
+            <textarea
+                id="researchQuestion"
+                placeholder="Example: What are the benefits of digital skills for young people?"
+            ></textarea>
 
-            <h3>My Task Plan</h3>
-
-            <button
-                class="copy-btn"
-                onclick="copyTaskPlan()"
-            >
-                📋 Copy
+            <button class="generate-btn" onclick="startResearch()">
+                ✨ Start Research
             </button>
 
-        </div>
+            <div class="result-box">
 
-        <textarea
-            id="taskResult"
-            placeholder="Your task plan will appear here..."
-        ></textarea>
+                <div class="result-header">
 
-    </div>
+                    <h3>
+                        Research Outline
+                    </h3>
 
-</section>
-        <!-- AI RESEARCH ASSISTANT -->
+                    <button class="copy-btn" onclick="copyText('researchResult')">
+                        📋 Copy
+                    </button>
 
-<section class="email-generator">
+                </div>
 
-    <h2>🔎 AI Research Assistant</h2>
+                <textarea
+                    id="researchResult"
+                    placeholder="Your research outline will appear here..."
+                ></textarea>
 
-    <p>
-        Enter a research topic or question and AMANDA AI
-        will help you organise your research.
-    </p>
+            </div>
 
-    <label for="researchQuestion">
-        Research Topic or Question
-    </label>
+        </section>
 
-    <textarea
-        id="researchQuestion"
-        placeholder="Example: What are the benefits of digital skills for young people?"
-    ></textarea>
 
-    <button
-        class="generate-btn"
-        onclick="startResearch()"
-    >
-        ✨ Start Research
-    </button>
+        <!-- CHATBOT -->
+        <section id="chat" class="tool hidden">
 
-    <div class="result-box">
+            <h2>
+                💬 AMANDA AI Chatbot
+            </h2>
 
-        <div class="result-header">
+            <p>
+                Ask AMANDA AI a question and receive digital assistance.
+            </p>
 
-            <h3>Research Outline</h3>
+            <label>
+                Your Question
+            </label>
 
-            <button
-                class="copy-btn"
-                onclick="copyResearch()"
-            >
-                📋 Copy
+            <textarea
+                id="chatQuestion"
+                placeholder="Ask AMANDA AI anything..."
+            ></textarea>
+
+            <button class="generate-btn" onclick="askAmanda()">
+                ✨ Ask AMANDA AI
             </button>
 
-        </div>
+            <div class="result-box">
 
-        <textarea
-            id="researchResult"
-            placeholder="Your research outline will appear here..."
-        ></textarea>
+                <div class="result-header">
 
-    </div>
+                    <h3>
+                        AMANDA AI Response
+                    </h3>
 
-</section>
-        <!-- AI CHATBOT -->
+                    <button class="copy-btn" onclick="copyText('chatResult')">
+                        📋 Copy
+                    </button>
 
-<section class="email-generator">
+                </div>
 
-    <h2>💬 AMANDA AI Chatbot</h2>
+                <textarea
+                    id="chatResult"
+                    placeholder="AMANDA AI's response will appear here..."
+                ></textarea>
 
-    <p>
-        Ask AMANDA AI a question and receive digital assistance.
-    </p>
+            </div>
 
-    <label for="chatQuestion">
-        Your Question
-    </label>
+        </section>
 
-    <textarea
-        id="chatQuestion"
-        placeholder="Ask AMANDA AI anything..."
-    ></textarea>
 
-    <button
-        class="generate-btn"
-        onclick="askAmanda()"
-    >
-        ✨ Ask AMANDA AI
-    </button>
-
-    <div class="result-box">
-
-        <div class="result-header">
-
-            <h3>AMANDA AI Response</h3>
-
-            <button
-                class="copy-btn"
-                onclick="copyChat()"
-            >
-                📋 Copy
-            </button>
-
-        </div>
-
-        <textarea
-            id="chatResult"
-            placeholder="AMANDA AI's response will appear here..."
-        ></textarea>
-
-    </div>
-
-</section>
         <!-- RESPONSIBLE AI -->
         <div class="disclaimer">
 
@@ -777,10 +692,9 @@
                 Responsible AI:
             </strong>
 
-            AMANDA AI may generate inaccurate or
-            incomplete information. Always review and
-            verify important information before relying
-            on it.
+            AMANDA AI may generate inaccurate or incomplete
+            information. Always review and verify important
+            information before relying on it.
 
         </div>
 
@@ -789,305 +703,271 @@
 </div>
 
 
-<!-- JAVASCRIPT -->
 <script>
-    async function connectToAmanda(message, feature) {
 
-    try {
+    /* NAVIGATION */
 
-        const response = await fetch("/api/ai", {
-            method: "POST",
+    function showSection(sectionId, button) {
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+        const sections =
+            document.querySelectorAll(".main section");
 
-            body: JSON.stringify({
-                message: message,
-                feature: feature
-            })
+        sections.forEach(function(section) {
+            section.classList.add("hidden");
         });
 
-        const data = await response.json();
+        document
+            .getElementById(sectionId)
+            .classList.remove("hidden");
 
-        if (data.error) {
-            return data.error;
+        const buttons =
+            document.querySelectorAll(".nav-item");
+
+        buttons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        if (button) {
+            button.classList.add("active");
         }
 
-        return data.response;
+        const titles = {
+            dashboard: "Dashboard",
+            email: "Smart Email Generator",
+            meeting: "Meeting Notes",
+            tasks: "AI Task Planner",
+            research: "AI Research Assistant",
+            chat: "AI Chatbot"
+        };
 
-    } catch (error) {
+        document.getElementById("pageTitle").textContent =
+            titles[sectionId];
 
-        return "AMANDA AI could not connect to the server yet.";
-
+        window.scrollTo(0, 0);
     }
+
+
+    function openTool(sectionId) {
+
+        const buttons =
+            document.querySelectorAll(".nav-item");
+
+        buttons.forEach(function(button) {
+
+            button.classList.remove("active");
+
+            if (button.textContent
+                .toLowerCase()
+                .includes(sectionId === "email" ? "email" :
+                sectionId === "meeting" ? "meeting" :
+                sectionId === "tasks" ? "task" :
+                sectionId === "research" ? "research" :
+                sectionId === "chat" ? "chatbot" : "dashboard")) {
+
+                button.classList.add("active");
+            }
+        });
+
+        showSection(
+            sectionId,
+            document.querySelector(".nav-item.active")
+        );
     }
-    function askAmanda() {
 
-    const question =
-        document.getElementById("chatQuestion").value;
 
-    const result =
-        document.getElementById("chatResult");
+    /* EMAIL GENERATOR */
 
-    if (question.trim() === "") {
+    function generateEmail() {
+
+        const message =
+            document.getElementById("emailRequest").value;
+
+        const tone =
+            document.getElementById("emailTone").value;
+
+        const result =
+            document.getElementById("emailResult");
+
+        if (message.trim() === "") {
+
+            result.value =
+                "Please tell AMANDA AI what you would like the email to say.";
+
+            return;
+        }
+
+        let greeting = "Dear Recipient,";
+
+        if (tone === "Friendly") {
+            greeting = "Hello,";
+        }
+
+        if (tone === "Casual") {
+            greeting = "Hi,";
+        }
 
         result.value =
-            "Please enter a question first.";
-
-        return;
+            "Subject: Regarding Your Request\n\n" +
+            greeting +
+            "\n\n" +
+            message +
+            "\n\n" +
+            "Kind regards,\nAmanda";
     }
 
-    result.value =
-        "Hello! 🌸 I'm AMANDA AI.\n\n" +
-        "Thank you for your question:\n\n" +
-        question +
-        "\n\n" +
-        "I'm currently running in prototype mode. " +
-        "My AI model connection will be added in the next stage of development.\n\n" +
-        "For now, please review and verify important information before relying on it.";
-}
 
+    /* MEETING NOTES */
 
-function copyChat() {
+    function summarizeNotes() {
 
-    const result =
-        document.getElementById("chatResult");
+        const notes =
+            document.getElementById("meetingNotes").value;
 
-    if (result.value.trim() === "") {
+        const result =
+            document.getElementById("meetingResult");
 
-        alert("There is no response to copy yet.");
+        if (notes.trim() === "") {
 
-        return;
-    }
+            result.value =
+                "Please paste your meeting notes first.";
 
-    navigator.clipboard.writeText(result.value);
-
-    alert("Response copied successfully! 📋");
-}
-    function startResearch() {
-
-    const question =
-        document.getElementById("researchQuestion").value;
-
-    const result =
-        document.getElementById("researchResult");
-
-    if (question.trim() === "") {
+            return;
+        }
 
         result.value =
-            "Please enter a research topic or question first.";
-
-        return;
+            "MEETING SUMMARY\n\n" +
+            "Key Points:\n" +
+            "- " + notes.substring(0, 400) +
+            "\n\n" +
+            "Action Items:\n" +
+            "- Review the points discussed.\n" +
+            "- Follow up on outstanding tasks.\n\n" +
+            "Note: This is an AI-assisted summary. " +
+            "Please review the original meeting notes.";
     }
 
-    result.value =
-        "AMANDA AI RESEARCH OUTLINE\n\n" +
 
-        "Research Question:\n" +
-        question +
-        "\n\n" +
+    /* TASK PLANNER */
 
-        "1. Introduction\n" +
-        "Explain the background and importance of the topic.\n\n" +
-
-        "2. Key Areas to Investigate\n" +
-        "• Background information\n" +
-        "• Main benefits or challenges\n" +
-        "• Supporting evidence\n" +
-        "• Different perspectives\n\n" +
-
-        "3. Research Questions\n" +
-        "• What are the main factors involved?\n" +
-        "• What evidence supports the topic?\n" +
-        "• What are the possible challenges?\n\n" +
-
-        "4. Conclusion\n" +
-        "Summarise the main findings from reliable sources.\n\n" +
-
-        "Responsible AI reminder:\n" +
-        "Verify important information using reliable sources. " +
-        "AMANDA AI should assist with research, not replace proper research.";
-}
-
-
-function copyResearch() {
-
-    const result =
-        document.getElementById("researchResult");
-
-    if (result.value.trim() === "") {
-
-        alert("There is no research outline to copy yet.");
-
-        return;
-    }
-
-    navigator.clipboard.writeText(result.value);
-
-    alert("Research outline copied successfully! 📋");
-}
     function createTaskPlan() {
 
-    const tasks =
-        document.getElementById("taskInput").value;
+        const tasks =
+            document.getElementById("taskInput").value;
 
-    const priority =
-        document.getElementById("taskPriority").value;
+        const priority =
+            document.getElementById("taskPriority").value;
 
-    const result =
-        document.getElementById("taskResult");
+        const result =
+            document.getElementById("taskResult");
 
-    if (tasks.trim() === "") {
+        if (tasks.trim() === "") {
 
-        result.value =
-            "Please enter your tasks or goal first.";
+            result.value =
+                "Please enter your tasks or goal first.";
 
-        return;
-    }
-
-    result.value =
-        "AMANDA AI TASK PLAN\n\n" +
-        "Priority: " + priority + "\n\n" +
-        "Step 1: Review your tasks.\n" +
-        "Step 2: Start with the most important task.\n" +
-        "Step 3: Complete each task one at a time.\n" +
-        "Step 4: Review your progress.\n\n" +
-        "Your tasks:\n" +
-        tasks +
-        "\n\n" +
-        "Remember: You can edit this plan to suit your needs.";
-}
-
-
-function copyTaskPlan() {
-
-    const result =
-        document.getElementById("taskResult");
-
-    if (result.value.trim() === "") {
-
-        alert("There is no task plan to copy yet.");
-
-        return;
-    }
-
-    navigator.clipboard.writeText(result.value);
-
-    alert("Task plan copied successfully! 📋");
-}
-function summarizeNotes() {
-
-    const notes =
-        document.getElementById("meetingNotes").value;
-
-    const result =
-        document.getElementById("meetingResult");
-
-    if (notes.trim() === "") {
+            return;
+        }
 
         result.value =
-            "Please paste your meeting notes first.";
-
-        return;
+            "AMANDA AI TASK PLAN\n\n" +
+            "Priority: " + priority + "\n\n" +
+            "1. Review your tasks.\n" +
+            "2. Start with the most important task.\n" +
+            "3. Complete each task one at a time.\n" +
+            "4. Review your progress.\n\n" +
+            "Your tasks:\n" +
+            tasks +
+            "\n\n" +
+            "You can edit this plan to suit your needs.";
     }
 
-    result.value =
-        "MEETING SUMMARY\n\n" +
-        "Key Points:\n" +
-        "- " + notes.substring(0, 300) +
-        "\n\nAction Items:\n" +
-        "- Review the points discussed.\n" +
-        "- Follow up on outstanding tasks.\n\n" +
-        "Note: This is an AI-assisted summary. " +
-        "Please review the original meeting notes.";
-}
 
+    /* RESEARCH ASSISTANT */
 
-function copySummary() {
+    function startResearch() {
 
-    const result =
-        document.getElementById("meetingResult");
+        const question =
+            document.getElementById("researchQuestion").value;
 
-    if (result.value.trim() === "") {
+        const result =
+            document.getElementById("researchResult");
 
-        alert("There is no summary to copy yet.");
+        if (question.trim() === "") {
 
-        return;
-    }
+            result.value =
+                "Please enter a research topic or question first.";
 
-    navigator.clipboard.writeText(result.value);
-
-    alert("Summary copied successfully! 📋");
-}
-function generateEmail() {
-
-    const message =
-        document.getElementById("emailRequest").value;
-
-    const tone =
-        document.getElementById("emailTone").value;
-
-    const result =
-        document.getElementById("emailResult");
-
-
-    if (message.trim() === "") {
+            return;
+        }
 
         result.value =
-            "Please tell AMANDA AI what you would like the email to say.";
-
-        return;
+            "AMANDA AI RESEARCH OUTLINE\n\n" +
+            "Research Question:\n" +
+            question +
+            "\n\n" +
+            "1. Introduction\n" +
+            "Explain the background and importance of the topic.\n\n" +
+            "2. Key Areas to Investigate\n" +
+            "• Background information\n" +
+            "• Main benefits or challenges\n" +
+            "• Supporting evidence\n" +
+            "• Different perspectives\n\n" +
+            "3. Conclusion\n" +
+            "Summarise findings using reliable sources.\n\n" +
+            "Responsible AI reminder:\n" +
+            "Verify important information using reliable sources.";
     }
 
 
-    let greeting = "Dear Recipient,";
+    /* CHATBOT */
 
-    if (tone === "Friendly") {
-        greeting = "Hello,";
-    }
+    function askAmanda() {
 
-    if (tone === "Casual") {
-        greeting = "Hi,";
-    }
+        const question =
+            document.getElementById("chatQuestion").value;
 
+        const result =
+            document.getElementById("chatResult");
 
-    let email = "";
+        if (question.trim() === "") {
 
-    email += "Subject: Regarding Your Request\n\n";
+            result.value =
+                "Please enter a question first.";
 
-    email += greeting + "\n\n";
+            return;
+        }
 
-    email += message + "\n\n";
-
-    email += "Kind regards,\n";
-
-    email += "Amanda";
-
-
-    result.value = email;
-}
-
-
-function copyEmail() {
-
-    const result =
-        document.getElementById("emailResult");
-
-
-    if (result.value.trim() === "") {
-
-        alert("There is no email to copy yet.");
-
-        return;
+        result.value =
+            "Hello! 🌸 I'm AMANDA AI.\n\n" +
+            "Your question:\n" +
+            question +
+            "\n\n" +
+            "I'm currently running in prototype mode. " +
+            "The real AI model connection will be added " +
+            "in the next stage of development.\n\n" +
+            "Please review and verify important information " +
+            "before relying on it.";
     }
 
 
-    navigator.clipboard.writeText(result.value);
+    /* COPY */
 
-    alert("Email copied successfully! 📋");
+    function copyText(elementId) {
 
-}
+        const result =
+            document.getElementById(elementId);
+
+        if (result.value.trim() === "") {
+
+            alert("There is nothing to copy yet.");
+
+            return;
+        }
+
+        navigator.clipboard.writeText(result.value);
+
+        alert("Copied successfully! 📋");
+    }
 
 </script>
 
