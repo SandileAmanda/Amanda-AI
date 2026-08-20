@@ -671,6 +671,56 @@
     </div>
 
 </section>
+        <!-- AI RESEARCH ASSISTANT -->
+
+<section class="email-generator">
+
+    <h2>🔎 AI Research Assistant</h2>
+
+    <p>
+        Enter a research topic or question and AMANDA AI
+        will help you organise your research.
+    </p>
+
+    <label for="researchQuestion">
+        Research Topic or Question
+    </label>
+
+    <textarea
+        id="researchQuestion"
+        placeholder="Example: What are the benefits of digital skills for young people?"
+    ></textarea>
+
+    <button
+        class="generate-btn"
+        onclick="startResearch()"
+    >
+        ✨ Start Research
+    </button>
+
+    <div class="result-box">
+
+        <div class="result-header">
+
+            <h3>Research Outline</h3>
+
+            <button
+                class="copy-btn"
+                onclick="copyResearch()"
+            >
+                📋 Copy
+            </button>
+
+        </div>
+
+        <textarea
+            id="researchResult"
+            placeholder="Your research outline will appear here..."
+        ></textarea>
+
+    </div>
+
+</section>
         <!-- RESPONSIBLE AI -->
         <div class="disclaimer">
 
@@ -692,6 +742,68 @@
 
 <!-- JAVASCRIPT -->
 <script>
+    function startResearch() {
+
+    const question =
+        document.getElementById("researchQuestion").value;
+
+    const result =
+        document.getElementById("researchResult");
+
+    if (question.trim() === "") {
+
+        result.value =
+            "Please enter a research topic or question first.";
+
+        return;
+    }
+
+    result.value =
+        "AMANDA AI RESEARCH OUTLINE\n\n" +
+
+        "Research Question:\n" +
+        question +
+        "\n\n" +
+
+        "1. Introduction\n" +
+        "Explain the background and importance of the topic.\n\n" +
+
+        "2. Key Areas to Investigate\n" +
+        "• Background information\n" +
+        "• Main benefits or challenges\n" +
+        "• Supporting evidence\n" +
+        "• Different perspectives\n\n" +
+
+        "3. Research Questions\n" +
+        "• What are the main factors involved?\n" +
+        "• What evidence supports the topic?\n" +
+        "• What are the possible challenges?\n\n" +
+
+        "4. Conclusion\n" +
+        "Summarise the main findings from reliable sources.\n\n" +
+
+        "Responsible AI reminder:\n" +
+        "Verify important information using reliable sources. " +
+        "AMANDA AI should assist with research, not replace proper research.";
+}
+
+
+function copyResearch() {
+
+    const result =
+        document.getElementById("researchResult");
+
+    if (result.value.trim() === "") {
+
+        alert("There is no research outline to copy yet.");
+
+        return;
+    }
+
+    navigator.clipboard.writeText(result.value);
+
+    alert("Research outline copied successfully! 📋");
+}
     function createTaskPlan() {
 
     const tasks =
