@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AMANDA AI</title>
-
-    <style>
+ .ema
+}   <style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -175,7 +175,87 @@
             .top h1 {
                 font-size: 22px;
             }
-        }
+.email-generator {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #f0dce7;
+    margin-bottom: 25px;
+}
+
+.section-header {
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    margin-bottom: 8px;
+}
+
+.section-header p {
+    color: #777;
+}
+
+.email-generator label {
+    display: block;
+    margin: 15px 0 8px;
+    font-weight: bold;
+}
+
+.email-generator textarea,
+.email-generator select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.email-generator textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.email-generator select {
+    background: white;
+}
+
+.generate-btn {
+    margin-top: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #c04b87;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.generate-btn:hover {
+    opacity: 0.9;
+}
+
+.result-box {
+    margin-top: 25px;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.result-header button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#emailResult {
+    min-height: 180px;
+}        }
     </style>
 </head>
 
@@ -215,7 +295,51 @@
                 simpler productivity.
             </p>
         </section>
+<!-- Smart Email Generator -->
 
+<section class="email-generator">
+
+    <div class="section-header">
+        <h2>✉️ Smart Email Generator</h2>
+        <p>Create a professional email with AMANDA AI.</p>
+    </div>
+
+    <label for="emailRequest">What would you like to say?</label>
+
+    <textarea
+        id="emailRequest"
+        placeholder="Example: I need to ask my manager for permission to attend a training session..."
+    ></textarea>
+
+    <label for="emailTone">Choose a tone</label>
+
+    <select id="emailTone">
+        <option>Professional</option>
+        <option>Friendly</option>
+        <option>Formal</option>
+        <option>Casual</option>
+    </select>
+
+    <button class="generate-btn" onclick="generateEmail()">
+        ✨ Generate Email
+    </button>
+
+    <div class="result-box">
+        <div class="result-header">
+            <h3>Generated Email</h3>
+
+            <button onclick="copyEmail()">
+                📋 Copy
+            </button>
+        </div>
+
+        <textarea
+            id="emailResult"
+            placeholder="Your generated email will appear here..."
+        ></textarea>
+    </div>
+
+</section>
         <section class="cards">
 
             <div class="card">
@@ -259,6 +383,61 @@
     </main>
 
 </div>
+<script>
 
+async function generateEmail() {
+
+    const message = document.getElementById("emailRequest").value;
+    const tone = document.getElementById("emailTone").value;
+    const result = document.getElementById("emailResult");
+
+    if (!message.trim()) {
+        result.value = "Please enter what you would like the email to say.";
+        return;
+    }
+
+    result.value = "AMANDA AI is preparing your email...";
+
+    try {
+
+        const response = await fetch("/api/email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message,
+                tone: tone
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            result.value = data.error;
+        } else {
+            result.value = data.email;
+        }
+
+    } catch (error) {
+
+        result.value =
+            "AMANDA AI could not connect to the server. Please try again.";
+
+    }
+}
+
+
+function copyEmail() {
+
+    const result = document.getElementById("emailResult");
+
+    navigator.clipboard.writeText(result.value);
+
+    alert("Email copied! 📋");
+
+}
+
+        </script>
 </body>
 </html>
