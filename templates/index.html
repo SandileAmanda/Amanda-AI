@@ -791,6 +791,37 @@
 
 <!-- JAVASCRIPT -->
 <script>
+    async function connectToAmanda(message, feature) {
+
+    try {
+
+        const response = await fetch("/api/ai", {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: message,
+                feature: feature
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            return data.error;
+        }
+
+        return data.response;
+
+    } catch (error) {
+
+        return "AMANDA AI could not connect to the server yet.";
+
+    }
+    }
     function askAmanda() {
 
     const question =
