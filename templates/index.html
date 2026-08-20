@@ -551,6 +551,126 @@
     </div>
 
 </section>
+        <!-- AI TASK PLANNER -->
+
+<section class="email-generator">
+
+    <h2>✅ AI Task Planner</h2>
+
+    <p>
+        Enter your tasks or goal and let AMANDA AI
+        organise them into a simple plan.
+    </p>
+
+    <label for="taskInput">
+        Your Tasks or Goal
+    </label>
+
+    <textarea
+        id="taskInput"
+        placeholder="Example: Complete my assignment, study Python, apply for jobs..."
+    ></textarea>
+
+    <label for="taskPriority">
+        Priority
+    </label>
+
+    <select id="taskPriority">
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select>
+
+    <button
+        class="generate-btn"
+        onclick="createTaskPlan()"
+    >
+        ✨ Create Task Plan
+    </button>
+
+    <div class="result-box">
+
+        <div class="result-header">
+
+            <h3>My Task Plan</h3>
+
+            <button
+                class="copy-btn"
+                onclick="copyTaskPlan()"
+            >
+                📋 Copy
+            </button>
+
+        </div>
+
+        <textarea
+            id="taskResult"
+            placeholder="Your task plan will appear here..."
+        ></textarea>
+
+    </div>
+
+</section>
+        <!-- AI TASK PLANNER -->
+
+<section class="email-generator">
+
+    <h2>✅ AI Task Planner</h2>
+
+    <p>
+        Enter your tasks or goal and let AMANDA AI
+        organise them into a simple plan.
+    </p>
+
+    <label for="taskInput">
+        Your Tasks or Goal
+    </label>
+
+    <textarea
+        id="taskInput"
+        placeholder="Example: Complete my assignment, study Python, apply for jobs..."
+    ></textarea>
+
+    <label for="taskPriority">
+        Priority
+    </label>
+
+    <select id="taskPriority">
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+    </select>
+
+    <button
+        class="generate-btn"
+        onclick="createTaskPlan()"
+    >
+        ✨ Create Task Plan
+    </button>
+
+    <div class="result-box">
+
+        <div class="result-header">
+
+            <h3>My Task Plan</h3>
+
+            <button
+                class="copy-btn"
+                onclick="copyTaskPlan()"
+            >
+                📋 Copy
+            </button>
+
+        </div>
+
+        <textarea
+            id="taskResult"
+            placeholder="Your task plan will appear here..."
+        ></textarea>
+
+    </div>
+
+</section>
         <!-- RESPONSIBLE AI -->
         <div class="disclaimer">
 
@@ -572,6 +692,55 @@
 
 <!-- JAVASCRIPT -->
 <script>
+    function createTaskPlan() {
+
+    const tasks =
+        document.getElementById("taskInput").value;
+
+    const priority =
+        document.getElementById("taskPriority").value;
+
+    const result =
+        document.getElementById("taskResult");
+
+    if (tasks.trim() === "") {
+
+        result.value =
+            "Please enter your tasks or goal first.";
+
+        return;
+    }
+
+    result.value =
+        "AMANDA AI TASK PLAN\n\n" +
+        "Priority: " + priority + "\n\n" +
+        "Step 1: Review your tasks.\n" +
+        "Step 2: Start with the most important task.\n" +
+        "Step 3: Complete each task one at a time.\n" +
+        "Step 4: Review your progress.\n\n" +
+        "Your tasks:\n" +
+        tasks +
+        "\n\n" +
+        "Remember: You can edit this plan to suit your needs.";
+}
+
+
+function copyTaskPlan() {
+
+    const result =
+        document.getElementById("taskResult");
+
+    if (result.value.trim() === "") {
+
+        alert("There is no task plan to copy yet.");
+
+        return;
+    }
+
+    navigator.clipboard.writeText(result.value);
+
+    alert("Task plan copied successfully! 📋");
+}
 function summarizeNotes() {
 
     const notes =
