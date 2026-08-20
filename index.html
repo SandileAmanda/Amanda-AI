@@ -24,10 +24,10 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* Side Navigation */
         .sidebar {
             width: 240px;
-            background: white;
+            background: #ffffff;
             padding: 25px 15px;
             border-right: 1px solid #f0dce7;
         }
@@ -36,21 +36,21 @@
             font-size: 24px;
             font-weight: bold;
             color: #c04b87;
+            margin-bottom: 35px;
             text-align: center;
-            margin-bottom: 30px;
         }
 
         .nav-item {
             display: block;
             width: 100%;
-            padding: 13px;
+            padding: 14px;
             margin-bottom: 8px;
             border: none;
             background: transparent;
             border-radius: 12px;
             text-align: left;
+            font-size: 15px;
             cursor: pointer;
-            font-size: 14px;
         }
 
         .nav-item:hover,
@@ -59,7 +59,7 @@
             color: #a52f6d;
         }
 
-        /* Main */
+        /* Main Content */
         .main {
             flex: 1;
             padding: 30px;
@@ -69,7 +69,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .top h1 {
@@ -97,7 +97,7 @@
             color: #666;
         }
 
-        /* Cards */
+        /* Feature Cards */
         .cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -119,7 +119,7 @@
 
         .icon {
             font-size: 30px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .card h3 {
@@ -129,22 +129,20 @@
         .card p {
             color: #777;
             font-size: 14px;
-            line-height: 1.5;
         }
 
         .disclaimer {
             margin-top: 30px;
             padding: 15px;
-            background: white;
+            background: #fff;
             border-radius: 12px;
             font-size: 12px;
             color: #777;
             border: 1px solid #eee;
         }
 
-        /* Responsive design */
+        /* Mobile */
         @media (max-width: 700px) {
-
             .app {
                 display: block;
             }
@@ -155,10 +153,15 @@
                 border-bottom: 1px solid #f0dce7;
             }
 
+            .logo {
+                margin-bottom: 15px;
+            }
+
             .nav-item {
                 display: inline-block;
                 width: auto;
-                padding: 9px;
+                margin-right: 5px;
+                padding: 10px;
             }
 
             .main {
@@ -197,7 +200,7 @@
 
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Dashboard -->
     <main class="main">
 
         <div class="top">
@@ -218,41 +221,31 @@
             <div class="card">
                 <div class="icon">✉️</div>
                 <h3>Smart Email Generator</h3>
-                <p>
-                    Create professional emails quickly with AI assistance.
-                </p>
+                <p>Create professional emails quickly with AI assistance.</p>
             </div>
 
             <div class="card">
                 <div class="icon">📝</div>
                 <h3>Meeting Notes Summarizer</h3>
-                <p>
-                    Turn long meeting notes into clear summaries and action items.
-                </p>
+                <p>Turn long meeting notes into clear summaries and action items.</p>
             </div>
 
             <div class="card">
                 <div class="icon">✅</div>
                 <h3>AI Task Planner</h3>
-                <p>
-                    Organise your goals and tasks into a practical plan.
-                </p>
+                <p>Organise your goals and tasks into a practical plan.</p>
             </div>
 
             <div class="card">
                 <div class="icon">🔎</div>
                 <h3>AI Research Assistant</h3>
-                <p>
-                    Structure research questions and organise information.
-                </p>
+                <p>Structure research questions and organise useful information.</p>
             </div>
 
             <div class="card">
                 <div class="icon">💬</div>
                 <h3>AI Chatbot</h3>
-                <p>
-                    Chat with AMANDA AI and get helpful digital assistance.
-                </p>
+                <p>Chat with AMANDA AI and get helpful digital assistance.</p>
             </div>
 
         </section>
