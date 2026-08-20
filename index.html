@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AMANDA AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff7fb;
+            color: #333;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: white;
+            padding: 25px 15px;
+            border-right: 1px solid #f0dce7;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c04b87;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-item {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 8px;
+            border: none;
+            background: transparent;
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: #f9ddeb;
+            color: #a52f6d;
+        }
+
+        /* Main */
+        .main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .top h1 {
+            font-size: 28px;
+        }
+
+        .profile {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+        }
+
+        .welcome {
+            background: linear-gradient(135deg, #f9ddeb, #f4e7ff);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #666;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid #f0dce7;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .icon {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .disclaimer {
+            margin-top: 30px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #777;
+            border: 1px solid #eee;
+        }
+
+        /* Responsive design */
+        @media (max-width: 700px) {
+
+            .app {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #f0dce7;
+            }
+
+            .nav-item {
+                display: inline-block;
+                width: auto;
+                padding: 9px;
+            }
+
+            .main {
+                padding: 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .top h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            ✨ AMANDA AI
+        </div>
+
+        <button class="nav-item active">🏠 Dashboard</button>
+        <button class="nav-item">✉️ Email Generator</button>
+        <button class="nav-item">📝 Meeting Notes</button>
+        <button class="nav-item">✅ Task Planner</button>
+        <button class="nav-item">🔎 Research Assistant</button>
+        <button class="nav-item">💬 AI Chatbot</button>
+        <button class="nav-item">⚙️ Settings</button>
+
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+        <div class="top">
+            <h1>Dashboard</h1>
+            <div class="profile">👩‍💻 Amanda</div>
+        </div>
+
+        <section class="welcome">
+            <h2>Welcome to AMANDA AI 🌸</h2>
+            <p>
+                Your intelligent digital assistant for smarter,
+                simpler productivity.
+            </p>
+        </section>
+
+        <section class="cards">
+
+            <div class="card">
+                <div class="icon">✉️</div>
+                <h3>Smart Email Generator</h3>
+                <p>
+                    Create professional emails quickly with AI assistance.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📝</div>
+                <h3>Meeting Notes Summarizer</h3>
+                <p>
+                    Turn long meeting notes into clear summaries and action items.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">✅</div>
+                <h3>AI Task Planner</h3>
+                <p>
+                    Organise your goals and tasks into a practical plan.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔎</div>
+                <h3>AI Research Assistant</h3>
+                <p>
+                    Structure research questions and organise information.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">💬</div>
+                <h3>AI Chatbot</h3>
+                <p>
+                    Chat with AMANDA AI and get helpful digital assistance.
+                </p>
+            </div>
+
+        </section>
+
+        <div class="disclaimer">
+            <strong>Responsible AI:</strong>
+            AMANDA AI may generate inaccurate or incomplete information.
+            Always review and verify important information before relying on it.
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
