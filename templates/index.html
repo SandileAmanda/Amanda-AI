@@ -721,6 +721,55 @@
     </div>
 
 </section>
+        <!-- AI CHATBOT -->
+
+<section class="email-generator">
+
+    <h2>💬 AMANDA AI Chatbot</h2>
+
+    <p>
+        Ask AMANDA AI a question and receive digital assistance.
+    </p>
+
+    <label for="chatQuestion">
+        Your Question
+    </label>
+
+    <textarea
+        id="chatQuestion"
+        placeholder="Ask AMANDA AI anything..."
+    ></textarea>
+
+    <button
+        class="generate-btn"
+        onclick="askAmanda()"
+    >
+        ✨ Ask AMANDA AI
+    </button>
+
+    <div class="result-box">
+
+        <div class="result-header">
+
+            <h3>AMANDA AI Response</h3>
+
+            <button
+                class="copy-btn"
+                onclick="copyChat()"
+            >
+                📋 Copy
+            </button>
+
+        </div>
+
+        <textarea
+            id="chatResult"
+            placeholder="AMANDA AI's response will appear here..."
+        ></textarea>
+
+    </div>
+
+</section>
         <!-- RESPONSIBLE AI -->
         <div class="disclaimer">
 
@@ -742,6 +791,49 @@
 
 <!-- JAVASCRIPT -->
 <script>
+    function askAmanda() {
+
+    const question =
+        document.getElementById("chatQuestion").value;
+
+    const result =
+        document.getElementById("chatResult");
+
+    if (question.trim() === "") {
+
+        result.value =
+            "Please enter a question first.";
+
+        return;
+    }
+
+    result.value =
+        "Hello! 🌸 I'm AMANDA AI.\n\n" +
+        "Thank you for your question:\n\n" +
+        question +
+        "\n\n" +
+        "I'm currently running in prototype mode. " +
+        "My AI model connection will be added in the next stage of development.\n\n" +
+        "For now, please review and verify important information before relying on it.";
+}
+
+
+function copyChat() {
+
+    const result =
+        document.getElementById("chatResult");
+
+    if (result.value.trim() === "") {
+
+        alert("There is no response to copy yet.");
+
+        return;
+    }
+
+    navigator.clipboard.writeText(result.value);
+
+    alert("Response copied successfully! 📋");
+}
     function startResearch() {
 
     const question =
